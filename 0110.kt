@@ -6,50 +6,40 @@
  * y guiones, como en "It – Stephen King – 1986".
  */
 
-class Libro {
+class Libro(autor: String, titulo: String, anyo: Int) {
     var autor: String = ""
         set(valor) {
             field = if (valor.isEmpty()) "Anónimo" else valor
         }
-        get() {
-            return field
-        }
+        get() = field
 
     var titulo: String = ""
         set(valor) {
             field = if (valor.isEmpty()) "No indicado" else valor
         }
-        get() {
-            return field
-        }
+        get() = field
 
     var anyo: Int = 0
         set(valor) {
             field = if (valor < 0) -1 else valor
         }
-        get() {
-            return field
-        }
+        get() = field
 
-    fun inicializar(autor: String, titulo: String, anyo: Int) {
+    init {
         this.autor = autor
         this.titulo = titulo
         this.anyo = anyo
     }
 
-    fun imprimir() {
-        println("$titulo  - $autor - $anyo")
+    override fun toString(): String {
+        return "$titulo  - $autor - $anyo"
     }
 }
 
 fun main() {
-    val libro: Libro
-    libro = Libro()
-    libro.inicializar("Stephen King","It",1986)
-    libro.imprimir()
+    val libro1 = Libro("Stephen King","It",1986)
+    println(libro1)
 
-    val libro2: Libro
-    libro2 = Libro()
-    libro2.inicializar("","",0)
-    libro2.imprimir()
+    val libro2 = Libro("","",0)
+    println(libro2)
 }
